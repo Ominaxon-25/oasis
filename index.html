@@ -21,24 +21,31 @@
     <div class="container header-inner">
       <a href="#" class="logo" aria-label="Oasis Homepage">
         <span class="logo-text">Oasis</span>
-        <span class="logo-tag">Tashkent</span>
+        <span class="logo-tag" data-i18n="tag_tashkent">Tashkent</span>
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="nav-desktop" aria-label="Primary Navigation">
-        <a href="#explore" class="nav-link">Explore</a>
-        <a href="#how-it-works" class="nav-link">How It Works</a>
-        <a href="#for-restaurants" class="nav-link">For Restaurants</a>
+        <a href="#explore" class="nav-link" data-i18n="nav_explore">Explore</a>
+        <a href="#how-it-works" class="nav-link" data-i18n="nav_how">How It Works</a>
+        <a href="#for-restaurants" class="nav-link" data-i18n="nav_restaurants">For Restaurants</a>
       </nav>
 
-      <!-- Action Buttons -->
+      <!-- Action Buttons & Language Switcher -->
       <div class="header-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switcher" aria-label="Language selector">
+          <button type="button" class="lang-btn active" data-lang="en" onclick="window.changeLanguage('en')">EN</button>
+          <button type="button" class="lang-btn" data-lang="uz" onclick="window.changeLanguage('uz')">UZ</button>
+          <button type="button" class="lang-btn" data-lang="ru" onclick="window.changeLanguage('ru')">RU</button>
+        </div>
+
         <button type="button" class="btn-my-bookings" id="myBookingsBtn" title="View your saved reservations">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-          <span>My Bookings</span>
+          <span data-i18n="btn_my_bookings">My Bookings</span>
           <span class="badge-count" id="headerBookingCount">0</span>
         </button>
-        <a href="#search-section" class="btn-primary" id="headerBookBtn">Book a Table</a>
+        <a href="#search-section" class="btn-primary" id="headerBookBtn" data-i18n="btn_book_table">Book a Table</a>
         <button type="button" class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Open menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
@@ -47,10 +54,17 @@
 
     <!-- Mobile Drawer Nav -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer">
-      <a href="#explore" class="mobile-nav-link">Explore</a>
-      <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
-      <a href="#for-restaurants" class="mobile-nav-link">For Restaurants</a>
-      <a href="#search-section" class="btn-primary" style="margin-top: 0.5rem; text-align: center;">Book a Table</a>
+      <div style="display: flex; justify-content: center; margin-bottom: 0.5rem;">
+        <div class="lang-switcher" aria-label="Language selector">
+          <button type="button" class="lang-btn active" data-lang="en" onclick="window.changeLanguage('en')">EN</button>
+          <button type="button" class="lang-btn" data-lang="uz" onclick="window.changeLanguage('uz')">UZ</button>
+          <button type="button" class="lang-btn" data-lang="ru" onclick="window.changeLanguage('ru')">RU</button>
+        </div>
+      </div>
+      <a href="#explore" class="mobile-nav-link" data-i18n="nav_explore">Explore</a>
+      <a href="#how-it-works" class="mobile-nav-link" data-i18n="nav_how">How It Works</a>
+      <a href="#for-restaurants" class="mobile-nav-link" data-i18n="nav_restaurants">For Restaurants</a>
+      <a href="#search-section" class="btn-primary" style="margin-top: 0.5rem; text-align: center;" data-i18n="btn_book_table">Book a Table</a>
     </div>
   </header>
 
@@ -60,13 +74,13 @@
       <div class="container">
         <div class="hero-pill">
           <span class="dot"></span>
-          <span>Instant Table Booking · Tashkent</span>
+          <span data-i18n="hero_pill">Instant Table Booking · Tashkent</span>
         </div>
-        <h1 class="hero-title">Skip the Wait.<br>Reserve Your Table.</h1>
-        <p class="hero-text">Discover great restaurants in Tashkent and reserve your table without making a phone call.</p>
+        <h1 class="hero-title" data-i18n="hero_title">Skip the Wait.<br>Reserve Your Table.</h1>
+        <p class="hero-text" data-i18n="hero_text">Discover great restaurants in Tashkent and reserve your table without making a phone call.</p>
         <div class="hero-cta-wrap">
           <a href="#search-section" class="btn-primary btn-gold" style="font-size: 1rem; padding: 0.9rem 2rem;">
-            <span>Find a Table</span>
+            <span data-i18n="hero_cta">Find a Table</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
         </div>
@@ -82,14 +96,14 @@
             <div class="search-field">
               <label for="searchArea" class="field-label">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                Area
+                <span data-i18n="search_area_label">Area</span>
               </label>
               <div class="field-input-wrap">
                 <select id="searchArea" class="search-select">
-                  <option value="all">All Areas</option>
-                  <option value="Tashkent Center">Tashkent Center</option>
-                  <option value="Yakkasaray">Yakkasaray</option>
-                  <option value="Mirabad">Mirabad</option>
+                  <option value="all" data-i18n="search_area_all">All Areas</option>
+                  <option value="Tashkent Center" data-i18n="search_area_center">Tashkent Center</option>
+                  <option value="Yakkasaray" data-i18n="search_area_yakkasaray">Yakkasaray</option>
+                  <option value="Mirabad" data-i18n="search_area_mirabad">Mirabad</option>
                 </select>
               </div>
             </div>
@@ -98,7 +112,7 @@
             <div class="search-field">
               <label for="searchDate" class="field-label">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Date
+                <span data-i18n="search_date_label">Date</span>
               </label>
               <div class="field-input-wrap">
                 <input type="date" id="searchDate" class="search-date-input" required>
@@ -109,11 +123,11 @@
             <div class="search-field">
               <label for="searchTime" class="field-label">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                Time
+                <span data-i18n="search_time_label">Time</span>
               </label>
               <div class="field-input-wrap">
                 <select id="searchTime" class="search-select">
-                  <option value="12:00">12:00 (Lunch)</option>
+                  <option value="12:00">12:00</option>
                   <option value="14:00">14:00</option>
                   <option value="16:00">16:00</option>
                   <option value="18:00">18:00</option>
@@ -131,20 +145,20 @@
             <div class="search-field">
               <label for="searchGuests" class="field-label">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                Guests
+                <span data-i18n="search_guests_label">Guests</span>
               </label>
               <div class="field-input-wrap">
                 <select id="searchGuests" class="search-select">
-                  <option value="1">1 guest</option>
-                  <option value="2" selected>2 guests</option>
-                  <option value="3">3 guests</option>
-                  <option value="4">4 guests</option>
-                  <option value="5">5 guests</option>
-                  <option value="6">6 guests</option>
-                  <option value="7">7 guests</option>
-                  <option value="8">8 guests</option>
-                  <option value="9">9 guests</option>
-                  <option value="10">10 guests</option>
+                  <option value="1">1</option>
+                  <option value="2" selected>2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
               </div>
             </div>
@@ -152,14 +166,14 @@
             <!-- Submit Button -->
             <button type="submit" class="btn-search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              <span>Find a Table</span>
+              <span data-i18n="search_btn">Find a Table</span>
             </button>
           </form>
 
           <div class="search-note">
             <span class="search-note-tag">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-              Advance booking only: Available from tomorrow onwards. Today is not selectable.
+              <span data-i18n="search_note">Advance booking only: Available from tomorrow onwards. Today is not selectable.</span>
             </span>
             <span id="activeFilterBadge" style="display: none; font-weight: 600; color: var(--gold);"></span>
           </div>
@@ -171,9 +185,9 @@
     <section class="restaurants-section" id="explore">
       <div class="container">
         <div class="section-header">
-          <p class="section-subtitle">Curated Venues</p>
-          <h2 class="section-title">Featured Restaurants</h2>
-          <p class="section-desc">Hand-picked premium spots across Tashkent offering guaranteed instant reservation.</p>
+          <p class="section-subtitle" data-i18n="explore_subtitle">Curated Venues</p>
+          <h2 class="section-title" data-i18n="explore_title">Featured Restaurants</h2>
+          <p class="section-desc" data-i18n="explore_desc">Hand-picked premium spots across Tashkent offering guaranteed instant reservation.</p>
         </div>
 
         <div class="restaurants-grid" id="restaurantsGrid">
@@ -190,7 +204,7 @@
               <div class="card-badges">
                 <span class="badge-location">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  Tashkent Center
+                  <span>Tashkent Center</span>
                 </span>
                 <span class="badge-rating">
                   <svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -201,13 +215,13 @@
 
             <div class="card-body">
               <h3 class="card-title">Veranda Lounge</h3>
-              <p class="card-cuisine">Fine Dining · Uzbek & European</p>
+              <p class="card-cuisine" data-i18n="cuisine_veranda">Fine Dining · Uzbek & European</p>
 
               <div class="card-schedule">
                 <div class="schedule-header">
                   <span class="schedule-label">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    Available:
+                    <span data-i18n="available_label">Available:</span>
                   </span>
                 </div>
                 <div class="time-slots-row">
@@ -219,7 +233,7 @@
 
               <div class="card-actions">
                 <button type="button" class="btn-card-reserve" onclick="openReservationModal('Veranda Lounge')">
-                  <span>Reserve</span>
+                  <span data-i18n="btn_reserve">Reserve</span>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </button>
               </div>
@@ -238,7 +252,7 @@
               <div class="card-badges">
                 <span class="badge-location">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  Yakkasaray
+                  <span>Yakkasaray</span>
                 </span>
                 <span class="badge-rating">
                   <svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -249,13 +263,13 @@
 
             <div class="card-body">
               <h3 class="card-title">Sora Sushi & Steak</h3>
-              <p class="card-cuisine">Pan-Asian · Japanese & Steak</p>
+              <p class="card-cuisine" data-i18n="cuisine_sora">Pan-Asian · Japanese & Steak</p>
 
               <div class="card-schedule">
                 <div class="schedule-header">
                   <span class="schedule-label">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    Available:
+                    <span data-i18n="available_label">Available:</span>
                   </span>
                 </div>
                 <div class="time-slots-row">
@@ -266,7 +280,7 @@
 
               <div class="card-actions">
                 <button type="button" class="btn-card-reserve" onclick="openReservationModal('Sora Sushi & Steak')">
-                  <span>Reserve</span>
+                  <span data-i18n="btn_reserve">Reserve</span>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </button>
               </div>
@@ -285,7 +299,7 @@
               <div class="card-badges">
                 <span class="badge-location">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  Mirabad
+                  <span>Mirabad</span>
                 </span>
                 <span class="badge-rating">
                   <svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -296,13 +310,13 @@
 
             <div class="card-body">
               <h3 class="card-title">Botanica Cafe</h3>
-              <p class="card-cuisine">Brunch & Italian</p>
+              <p class="card-cuisine" data-i18n="cuisine_botanica">Brunch & Italian</p>
 
               <div class="card-schedule">
                 <div class="schedule-header">
                   <span class="schedule-label">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    Available:
+                    <span data-i18n="available_label">Available:</span>
                   </span>
                 </div>
                 <div class="time-slots-row">
@@ -314,7 +328,7 @@
 
               <div class="card-actions">
                 <button type="button" class="btn-card-reserve" onclick="openReservationModal('Botanica Cafe')">
-                  <span>Reserve</span>
+                  <span data-i18n="btn_reserve">Reserve</span>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </button>
               </div>
@@ -329,31 +343,31 @@
     <section class="how-section" id="how-it-works">
       <div class="container">
         <div class="section-header">
-          <p class="section-subtitle">Effortless Dining</p>
-          <h2 class="section-title">How It Works</h2>
-          <p class="section-desc">Experience frictionless dining reservations in three simple steps.</p>
+          <p class="section-subtitle" data-i18n="how_subtitle">Effortless Dining</p>
+          <h2 class="section-title" data-i18n="how_title">How It Works</h2>
+          <p class="section-desc" data-i18n="how_desc">Experience frictionless dining reservations in three simple steps.</p>
         </div>
 
         <div class="steps-grid">
           <!-- Step 1 -->
           <div class="step-card">
             <div class="step-number">01</div>
-            <h3 class="step-title">Choose a restaurant</h3>
-            <p class="step-desc">Explore the finest hand-selected dining establishments across Tashkent’s premier districts.</p>
+            <h3 class="step-title" data-i18n="step1_title">Choose a restaurant</h3>
+            <p class="step-desc" data-i18n="step1_desc">Explore the finest hand-selected dining establishments across Tashkent’s premier districts.</p>
           </div>
 
           <!-- Step 2 -->
           <div class="step-card">
             <div class="step-number">02</div>
-            <h3 class="step-title">Pick a time</h3>
-            <p class="step-desc">Select your preferred date, time slot, guest count, and indoor or terrace seating effortlessly.</p>
+            <h3 class="step-title" data-i18n="step2_title">Pick a time</h3>
+            <p class="step-desc" data-i18n="step2_desc">Select your preferred date, time slot, guest count, and indoor or terrace seating effortlessly.</p>
           </div>
 
           <!-- Step 3 -->
           <div class="step-card">
             <div class="step-number">03</div>
-            <h3 class="step-title">Enjoy your evening</h3>
-            <p class="step-desc">Walk directly to your reserved table with guaranteed confirmation and zero waiting in line.</p>
+            <h3 class="step-title" data-i18n="step3_title">Enjoy your evening</h3>
+            <p class="step-desc" data-i18n="step3_desc">Walk directly to your reserved table with guaranteed confirmation and zero waiting in line.</p>
           </div>
         </div>
       </div>
@@ -363,9 +377,9 @@
     <section class="why-section">
       <div class="container">
         <div class="section-header">
-          <p class="section-subtitle">The Oasis Standard</p>
-          <h2 class="section-title">Why Oasis</h2>
-          <p class="section-desc">Designed to elevate how Tashkent discovers and experiences exceptional dining.</p>
+          <p class="section-subtitle" data-i18n="why_subtitle">The Oasis Standard</p>
+          <h2 class="section-title" data-i18n="why_title">Why Oasis</h2>
+          <p class="section-desc" data-i18n="why_desc">Designed to elevate how Tashkent discovers and experiences exceptional dining.</p>
         </div>
 
         <div class="why-grid">
@@ -374,8 +388,8 @@
             <div class="why-icon-box">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path><line x1="23" y1="1" x2="1" y2="23"></line></svg>
             </div>
-            <h3 class="why-title">No Phone Calls</h3>
-            <p class="why-desc">Reserve without calling.</p>
+            <h3 class="why-title" data-i18n="why1_title">No Phone Calls</h3>
+            <p class="why-desc" data-i18n="why1_desc">Reserve without calling.</p>
           </div>
 
           <!-- Item 2 -->
@@ -383,8 +397,8 @@
             <div class="why-icon-box">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
             </div>
-            <h3 class="why-title">Easy Booking</h3>
-            <p class="why-desc">Choose your date and time in seconds.</p>
+            <h3 class="why-title" data-i18n="why2_title">Easy Booking</h3>
+            <p class="why-desc" data-i18n="why2_desc">Choose your date and time in seconds.</p>
           </div>
 
           <!-- Item 3 -->
@@ -392,8 +406,8 @@
             <div class="why-icon-box">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
             </div>
-            <h3 class="why-title">Guaranteed Reservation</h3>
-            <p class="why-desc">Your reservation is confirmed before you arrive.</p>
+            <h3 class="why-title" data-i18n="why3_title">Guaranteed Reservation</h3>
+            <p class="why-desc" data-i18n="why3_desc">Your reservation is confirmed before you arrive.</p>
           </div>
         </div>
       </div>
@@ -404,10 +418,10 @@
       <div class="container">
         <div class="partner-banner">
           <div class="partner-content">
-            <h2>Own a restaurant?</h2>
-            <p>Let your guests reserve tables without phone calls.</p>
+            <h2 data-i18n="partner_title">Own a restaurant?</h2>
+            <p data-i18n="partner_text">Let your guests reserve tables without phone calls.</p>
             <button type="button" class="btn-partner-join" onclick="openPartnerModal()">
-              <span>Join Oasis</span>
+              <span data-i18n="partner_btn">Join Oasis</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
           </div>
@@ -417,19 +431,19 @@
               <div class="perk-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
               </div>
-              <span class="perk-text">Eliminate missed calls during peak service</span>
+              <span class="perk-text" data-i18n="perk1">Eliminate missed calls during peak service</span>
             </div>
             <div class="perk-item">
               <div class="perk-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
               </div>
-              <span class="perk-text">Direct connection with premium Tashkent diners</span>
+              <span class="perk-text" data-i18n="perk2">Direct connection with premium Tashkent diners</span>
             </div>
             <div class="perk-item">
               <div class="perk-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
               </div>
-              <span class="perk-text">Zero complicated software setup</span>
+              <span class="perk-text" data-i18n="perk3">Zero complicated software setup</span>
             </div>
           </div>
         </div>
@@ -443,29 +457,29 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo">Oasis</div>
-          <p class="footer-tagline">The modern table reservation service in Tashkent. Seamless, confirmed, and completely call-free.</p>
+          <p class="footer-tagline" data-i18n="footer_tagline">The modern table reservation service in Tashkent. Seamless, confirmed, and completely call-free.</p>
         </div>
 
         <div class="footer-links-group">
           <div>
-            <h4 class="footer-col-title">Navigation</h4>
+            <h4 class="footer-col-title" data-i18n="footer_nav_title">Navigation</h4>
             <ul class="footer-nav">
-              <li><a href="#explore" class="footer-link">Explore</a></li>
-              <li><a href="#how-it-works" class="footer-link">How It Works</a></li>
-              <li><a href="#for-restaurants" class="footer-link">For Restaurants</a></li>
+              <li><a href="#explore" class="footer-link" data-i18n="nav_explore">Explore</a></li>
+              <li><a href="#how-it-works" class="footer-link" data-i18n="nav_how">How It Works</a></li>
+              <li><a href="#for-restaurants" class="footer-link" data-i18n="nav_restaurants">For Restaurants</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="footer-col-title">Legal</h4>
+            <h4 class="footer-col-title" data-i18n="footer_legal_title">Legal</h4>
             <ul class="footer-nav">
-              <li><a href="#termsModal" onclick="showModalInfo('Privacy Policy', 'Your personal data and phone numbers are kept securely and used solely to fulfill table reservations at your chosen venues.'); return false;" class="footer-link">Privacy</a></li>
-              <li><a href="#privacyModal" onclick="showModalInfo('Terms of Service', 'Reservations confirmed via Oasis are held for up to 15 minutes past the scheduled booking time.'); return false;" class="footer-link">Terms</a></li>
+              <li><a href="#termsModal" onclick="showModalInfo('privacy'); return false;" class="footer-link" data-i18n="footer_privacy">Privacy</a></li>
+              <li><a href="#privacyModal" onclick="showModalInfo('terms'); return false;" class="footer-link" data-i18n="footer_terms">Terms</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="footer-col-title">Connect</h4>
+            <h4 class="footer-col-title" data-i18n="footer_connect_title">Connect</h4>
             <div class="footer-social-links">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -481,8 +495,8 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Oasis. Tashkent, Uzbekistan. All rights reserved.</p>
-        <p style="font-size: 0.8rem; color: var(--text-muted);">Simple Table Reservations for Tashkent</p>
+        <p data-i18n="footer_rights">© 2026 Oasis. Tashkent, Uzbekistan. All rights reserved.</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted);" data-i18n="footer_sub">Simple Table Reservations for Tashkent</p>
       </div>
     </div>
   </footer>
@@ -495,8 +509,8 @@
       <div id="bookingStageForm">
         <div class="modal-header">
           <div>
-            <h3 class="modal-title" id="reservationModalTitle">Reserve a Table</h3>
-            <p class="modal-subtitle">Instant online reservation · No phone call required</p>
+            <h3 class="modal-title" id="reservationModalTitle" data-i18n="modal_res_title">Reserve a Table</h3>
+            <p class="modal-subtitle" data-i18n="modal_res_sub">Instant online reservation · No phone call required</p>
           </div>
           <button type="button" class="modal-close-btn" onclick="closeReservationModal()" aria-label="Close popup">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -506,7 +520,7 @@
         <form id="reservationForm" class="modal-body" onsubmit="handleReservationSubmit(event)">
           <!-- Restaurant -->
           <div class="form-group">
-            <label class="form-label" for="resRestaurant">Restaurant</label>
+            <label class="form-label" for="resRestaurant" data-i18n="form_restaurant">Restaurant</label>
             <select id="resRestaurant" required>
               <option value="Veranda Lounge">Veranda Lounge (Tashkent Center)</option>
               <option value="Sora Sushi & Steak">Sora Sushi & Steak (Yakkasaray)</option>
@@ -518,13 +532,13 @@
           <div class="form-row-2">
             <!-- Date: Customers can only book from tomorrow -->
             <div class="form-group">
-              <label class="form-label" for="resDate">Date (From tomorrow)</label>
+              <label class="form-label" for="resDate" data-i18n="form_date">Date (From tomorrow)</label>
               <input type="date" id="resDate" required>
             </div>
 
             <!-- Time -->
             <div class="form-group">
-              <label class="form-label" for="resTime">Time</label>
+              <label class="form-label" for="resTime" data-i18n="form_time">Time</label>
               <select id="resTime" required>
                 <option value="12:00">12:00</option>
                 <option value="14:00">14:00</option>
@@ -542,30 +556,30 @@
 
           <!-- Guests -->
           <div class="form-group">
-            <label class="form-label" for="resGuests">Number of guests</label>
+            <label class="form-label" for="resGuests" data-i18n="form_guests">Number of guests</label>
             <select id="resGuests" required>
-              <option value="1">1 guest</option>
-              <option value="2" selected>2 guests</option>
-              <option value="3">3 guests</option>
-              <option value="4">4 guests</option>
-              <option value="5">5 guests</option>
-              <option value="6">6 guests</option>
-              <option value="7">7 guests</option>
-              <option value="8">8 guests</option>
-              <option value="9">9 guests</option>
-              <option value="10">10 guests</option>
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
             </select>
           </div>
 
           <!-- Seating -->
           <div class="form-group">
-            <label class="form-label">Seating Area</label>
+            <label class="form-label" data-i18n="form_seating">Seating Area</label>
             <div class="seating-options-group">
               <label class="seating-card">
                 <input type="radio" name="resSeating" value="Indoor" checked>
                 <div class="seating-card-label">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                  <span>Indoor</span>
+                  <span data-i18n="seating_indoor">Indoor</span>
                 </div>
               </label>
 
@@ -573,7 +587,7 @@
                 <input type="radio" name="resSeating" value="Terrace">
                 <div class="seating-card-label">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"></path><path d="m4.93 10.93 1.41 1.41"></path><path d="M20 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2"></path><circle cx="12" cy="18" r="4"></circle></svg>
-                  <span>Terrace</span>
+                  <span data-i18n="seating_terrace">Terrace</span>
                 </div>
               </label>
 
@@ -581,7 +595,7 @@
                 <input type="radio" name="resSeating" value="VIP">
                 <div class="seating-card-label">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                  <span>VIP</span>
+                  <span data-i18n="seating_vip">VIP</span>
                 </div>
               </label>
             </div>
@@ -590,22 +604,22 @@
           <!-- Contact Fields -->
           <div class="form-row-2">
             <div class="form-group">
-              <label class="form-label" for="resName">Full name</label>
-              <input type="text" id="resName" placeholder="e.g. Alisher Usmanov" required>
+              <label class="form-label" for="resName" data-i18n="form_name">Full name</label>
+              <input type="text" id="resName" data-i18n-placeholder="form_name_placeholder" placeholder="e.g. Alisher Usmanov" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="resPhone">Phone number</label>
+              <label class="form-label" for="resPhone" data-i18n="form_phone">Phone number</label>
               <input type="tel" id="resPhone" placeholder="+998 90 123 45 67" required>
             </div>
           </div>
 
           <!-- Special Request -->
           <div class="form-group">
-            <label class="form-label" for="resSpecial">Special request</label>
-            <textarea id="resSpecial" rows="2" placeholder="Anniversary celebration, window table, dietary needs..."></textarea>
+            <label class="form-label" for="resSpecial" data-i18n="form_special">Special request</label>
+            <textarea id="resSpecial" rows="2" data-i18n-placeholder="form_special_placeholder" placeholder="Anniversary celebration, window table, dietary needs..."></textarea>
           </div>
 
-          <button type="submit" class="btn-submit-booking">Confirm Reservation</button>
+          <button type="submit" class="btn-submit-booking" data-i18n="btn_confirm_res">Confirm Reservation</button>
         </form>
       </div>
 
@@ -613,8 +627,8 @@
       <div id="bookingStageVerification" style="display: none;">
         <div class="modal-header">
           <div>
-            <h3 class="modal-title">Verification</h3>
-            <p class="modal-subtitle">Quick confirmation</p>
+            <h3 class="modal-title" data-i18n="verif_title">Verification</h3>
+            <p class="modal-subtitle" data-i18n="verif_sub">Quick confirmation</p>
           </div>
           <button type="button" class="modal-close-btn" onclick="closeReservationModal()" aria-label="Close popup">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -622,12 +636,12 @@
         </div>
 
         <div class="modal-body verification-box">
-          <p style="font-size: 1.15rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">Enter verification code</p>
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">We've sent a 4-digit code to your phone</p>
+          <p style="font-size: 1.15rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;" data-i18n="verif_heading">Enter verification code</p>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="verif_text">We've sent a 4-digit code to your phone</p>
           
           <div class="demo-code-chip">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-            <span>For demo, use code: <strong>1234</strong></span>
+            <span data-i18n="verif_demo">For demo, use code: <strong>1234</strong></span>
           </div>
 
           <form id="codeForm" onsubmit="handleCodeSubmit(event)">
@@ -640,11 +654,11 @@
 
             <p class="verification-error" id="codeErrorMsg"></p>
 
-            <button type="submit" class="btn-submit-booking">Verify & Complete</button>
+            <button type="submit" class="btn-submit-booking" data-i18n="btn_verify">Verify & Complete</button>
           </form>
 
           <div style="margin-top: 1rem;">
-            <button type="button" onclick="backToFormStage()" style="font-size: 0.85rem; color: var(--text-muted); text-decoration: underline;">← Back to details</button>
+            <button type="button" onclick="backToFormStage()" style="font-size: 0.85rem; color: var(--text-muted); text-decoration: underline;" data-i18n="btn_back">← Back to details</button>
           </div>
         </div>
       </div>
@@ -653,8 +667,8 @@
       <div id="bookingStageConfirmed" style="display: none;">
         <div class="modal-header">
           <div>
-            <h3 class="modal-title">Success</h3>
-            <p class="modal-subtitle">Reservation locked</p>
+            <h3 class="modal-title" data-i18n="conf_title">Success</h3>
+            <p class="modal-subtitle" data-i18n="conf_sub">Reservation locked</p>
           </div>
           <button type="button" class="modal-close-btn" onclick="closeReservationModal()" aria-label="Close popup">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -665,35 +679,35 @@
           <div class="confirmed-icon-circle">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
-          <h3 class="confirmed-title">✓ Booking Confirmed</h3>
-          <p style="font-size: 0.95rem; color: var(--text-muted);">Your table is reserved and ready for you.</p>
+          <h3 class="confirmed-title" data-i18n="conf_heading">✓ Booking Confirmed</h3>
+          <p style="font-size: 0.95rem; color: var(--text-muted);" data-i18n="conf_text">Your table is reserved and ready for you.</p>
 
           <div class="booking-ref-badge" id="confirmedRefCode">OAS-4821</div>
 
           <div class="confirmed-details-card">
             <div class="detail-row">
-              <span class="detail-label">Restaurant</span>
+              <span class="detail-label" data-i18n="label_restaurant">Restaurant</span>
               <span class="detail-val" id="confirmedRestaurant">Veranda Lounge</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Date</span>
+              <span class="detail-label" data-i18n="label_date">Date</span>
               <span class="detail-val" id="confirmedDate">Tomorrow</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Time</span>
+              <span class="detail-label" data-i18n="label_time">Time</span>
               <span class="detail-val" id="confirmedTime">19:00</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Guests</span>
+              <span class="detail-label" data-i18n="label_guests">Guests</span>
               <span class="detail-val" id="confirmedGuests">2 Guests</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Seating</span>
+              <span class="detail-label" data-i18n="label_seating">Seating</span>
               <span class="detail-val" id="confirmedSeating">Indoor</span>
             </div>
           </div>
 
-          <button type="button" class="btn-submit-booking" onclick="closeReservationModal()">Done</button>
+          <button type="button" class="btn-submit-booking" onclick="closeReservationModal()" data-i18n="btn_done">Done</button>
         </div>
       </div>
 
@@ -705,8 +719,8 @@
     <div class="modal-card">
       <div class="modal-header">
         <div>
-          <h3 class="modal-title" id="partnerModalTitle">Partner with Oasis</h3>
-          <p class="modal-subtitle">Receive online table bookings without phone calls</p>
+          <h3 class="modal-title" id="partnerModalTitle" data-i18n="partner_modal_title">Partner with Oasis</h3>
+          <p class="modal-subtitle" data-i18n="partner_modal_sub">Receive online table bookings without phone calls</p>
         </div>
         <button type="button" class="modal-close-btn" onclick="closePartnerModal()" aria-label="Close popup">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -716,21 +730,21 @@
       <!-- Partner Form -->
       <form id="partnerForm" class="modal-body" onsubmit="handlePartnerSubmit(event)">
         <div class="form-group">
-          <label class="form-label" for="partnerRestaurantName">Restaurant name</label>
-          <input type="text" id="partnerRestaurantName" placeholder="e.g. Afsona Restaurant" required>
+          <label class="form-label" for="partnerRestaurantName" data-i18n="partner_label_res">Restaurant name</label>
+          <input type="text" id="partnerRestaurantName" data-i18n-placeholder="partner_res_placeholder" placeholder="e.g. Afsona Restaurant" required>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="partnerContactName">Name</label>
-          <input type="text" id="partnerContactName" placeholder="e.g. Rustam K." required>
+          <label class="form-label" for="partnerContactName" data-i18n="partner_label_name">Name</label>
+          <input type="text" id="partnerContactName" data-i18n-placeholder="partner_name_placeholder" placeholder="e.g. Rustam K." required>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="partnerPhone">Phone</label>
+          <label class="form-label" for="partnerPhone" data-i18n="partner_label_phone">Phone</label>
           <input type="tel" id="partnerPhone" placeholder="+998 90 000 00 00" required>
         </div>
 
-        <button type="submit" class="btn-submit-booking" style="background: var(--gold); margin-top: 1rem;">Submit Application</button>
+        <button type="submit" class="btn-submit-booking" style="background: var(--gold); margin-top: 1rem;" data-i18n="partner_btn_submit">Submit Application</button>
       </form>
 
       <!-- Partner Success State -->
@@ -738,9 +752,9 @@
         <div class="confirmed-icon-circle" style="background: var(--gold-light); color: #8C5827;">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
         </div>
-        <h3>Thank you. We'll contact you soon.</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Our restaurant partnerships manager in Tashkent will get in touch with you shortly.</p>
-        <button type="button" class="btn-submit-booking" onclick="closePartnerModal()">Close</button>
+        <h3 data-i18n="partner_success_title">Thank you. We'll contact you soon.</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;" data-i18n="partner_success_text">Our restaurant partnerships manager in Tashkent will get in touch with you shortly.</p>
+        <button type="button" class="btn-submit-booking" onclick="closePartnerModal()" data-i18n="btn_close">Close</button>
       </div>
     </div>
   </div>
@@ -749,7 +763,7 @@
   <div class="drawer-overlay" id="drawerOverlay" onclick="closeBookingsDrawer()">
     <aside class="drawer-sidebar" onclick="event.stopPropagation()">
       <div class="drawer-header">
-        <h3 style="font-size: 1.35rem; color: var(--dark);">My Reservations</h3>
+        <h3 style="font-size: 1.35rem; color: var(--dark);" data-i18n="drawer_title">My Reservations</h3>
         <button type="button" class="modal-close-btn" onclick="closeBookingsDrawer()" aria-label="Close drawer">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
@@ -771,7 +785,7 @@
       </div>
       <div class="modal-body">
         <p id="infoModalContent" style="color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;"></p>
-        <button type="button" class="btn-submit-booking" onclick="closeInfoModal()" style="margin-top: 1.5rem;">Got it</button>
+        <button type="button" class="btn-submit-booking" onclick="closeInfoModal()" style="margin-top: 1.5rem;" data-i18n="btn_close">Close</button>
       </div>
     </div>
   </div>
@@ -779,7 +793,8 @@
   <!-- Toast Notification -->
   <div class="toast-msg" id="toastMsg">Notification</div>
 
-  <!-- JavaScript -->
+  <!-- JavaScript Modules -->
+  <script src="translations.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

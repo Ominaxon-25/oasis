@@ -187,6 +187,41 @@ input:focus, select:focus, textarea:focus {
   gap: 0.85rem;
 }
 
+/* Language Switcher */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  gap: 2px;
+  box-shadow: 0 1px 3px rgba(26, 29, 32, 0.04);
+}
+
+.lang-btn {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.32rem 0.65rem;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  transition: var(--transition);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: transparent;
+}
+
+.lang-btn:hover {
+  color: var(--dark);
+}
+
+.lang-btn.active {
+  background: var(--dark);
+  color: var(--white);
+  box-shadow: 0 2px 5px rgba(26, 29, 32, 0.15);
+}
+
 .btn-my-bookings {
   font-size: 0.88rem;
   font-weight: 600;

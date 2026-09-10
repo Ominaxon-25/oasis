@@ -1,15 +1,19 @@
 /**
  * OASIS - Restaurant Reservation System (Tashkent)
- * MVP Core JavaScript
+ * Core JavaScript with Multilingual Support (EN, UZ, RU)
  */
 
 (function () {
   'use strict';
 
-  // State
-  let currentReservationDraft = null;
+  // Storage Keys
   const STORAGE_KEY = 'oasis_reservations';
   const PARTNER_STORAGE_KEY = 'oasis_restaurant_leads';
+  const LANG_STORAGE_KEY = 'oasis_lang';
+
+  // State
+  let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'en';
+  let currentReservationDraft = null;
 
   // DOM Elements
   const searchForm = document.getElementById('searchForm');
@@ -59,7 +63,67 @@
   const toastMsg = document.getElementById('toastMsg');
 
   // =========================================================================
-  // 1. Date Constraints: Only from tomorrow onwards
+  // 1. Multilingual Translation Engine
+  // =========================================================================
+  function t(key, params) {
+    const dict = (window.OASIS_TRANSLATIONS && window.OASIS_TRANSLATIONS[currentLang]) 
+      || (window.OASIS_TRANSLATIONS && window.OASIS_TRANSLATIONS.en) 
+      || {};
+    let text = dict[key] || (window.OASIS_TRANSLATIONS && window.OASIS_TRANSLATIONS.en && window.OASIS_TRANSLATIONS.en[key]) || key;
+    if (params) {
+      Object.keys(params).forEach(p => {
+        text = text.replace(new RegExp(`\\{${p}\\}`, 'g'), params[p]);
+      });
+    }
+    return text;
+  }
+
+  window.changeLanguage = function (lang) {
+    if (!window.OASIS_TRANSLATIONS || !window.OASIS_TRANSLATIONS[lang]) return;
+    currentLang = lang;
+    try {
+      localStorage.setItem(LANG_STORAGE_KEY, lang);
+    } catch (e) {
+      console.warn('LocalStorage lang save issue:', e);
+    }
+    document.documentElement.lang = lang;
+    applyTranslations();
+  };
+
+  function applyTranslations() {
+    // 1. Update text nodes with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const translation = t(key);
+      if (translation && translation !== key) {
+        el.innerHTML = translation;
+      }
+    });
+
+    // 2. Update placeholder attributes with data-i18n-placeholder
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      const translation = t(key);
+      if (translation && translation !== key) {
+        el.placeholder = translation;
+      }
+    });
+
+    // 3. Update active state on language switcher buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      if (btn.getAttribute('data-lang') === currentLang) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // 4. Update dynamic labels
+    renderBookingsDrawer();
+  }
+
+  // =========================================================================
+  // 2. Date Constraints: Only from tomorrow onwards
   // =========================================================================
   function getTomorrowDateString() {
     const now = new Date();
@@ -79,7 +143,7 @@
       searchDate.value = minDate;
       searchDate.addEventListener('change', function () {
         if (this.value < minDate) {
-          showToast('Bookings can only be made from tomorrow.');
+          showToast(t('toast_date_err'));
           this.value = minDate;
         }
       });
@@ -91,7 +155,7 @@
       resDate.value = minDate;
       resDate.addEventListener('change', function () {
         if (this.value < minDate) {
-          showToast('Bookings can only be made from tomorrow.');
+          showToast(t('toast_date_err'));
           this.value = minDate;
         }
       });
@@ -99,7 +163,7 @@
   }
 
   // =========================================================================
-  // 2. Search & Filter
+  // 3. Search & Filter
   // =========================================================================
   window.handleSearchSubmit = function (event) {
     if (event) event.preventDefault();
@@ -120,7 +184,8 @@
 
     if (activeFilterBadge) {
       if (selectedArea !== 'all') {
-        activeFilterBadge.textContent = `Showing: ${selectedArea} (${visibleCount})`;
+        const areaName = searchArea.options[searchArea.selectedIndex].text;
+        activeFilterBadge.textContent = t('showing_filter', { area: areaName, count: visibleCount });
         activeFilterBadge.style.display = 'inline';
       } else {
         activeFilterBadge.style.display = 'none';
@@ -133,11 +198,11 @@
       exploreSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    showToast(`Found ${visibleCount} available restaurants for ${searchGuests.value} guests.`);
+    showToast(t('toast_found', { count: visibleCount, guests: searchGuests.value }));
   };
 
   // =========================================================================
-  // 3. Reservation Modal Flow
+  // 4. Reservation Modal Flow
   // =========================================================================
   window.openReservationModal = function (restaurantName, timeSlot) {
     // Reset stages
@@ -263,7 +328,7 @@
       codeErrorMsg.textContent = '';
       completeBooking();
     } else {
-      codeErrorMsg.textContent = 'Invalid code. For demo, please enter 1234';
+      codeErrorMsg.textContent = t('verif_err');
       clearDigitInputs();
       if (digit1) digit1.focus();
     }
@@ -289,26 +354,30 @@
     
     // Format friendly date
     const [y, m, d] = currentReservationDraft.date.split('-');
-    const formattedDate = new Date(y, m - 1, d).toLocaleDateString('en-US', {
+    const localeMap = { en: 'en-US', uz: 'uz-UZ', ru: 'ru-RU' };
+    const locale = localeMap[currentLang] || 'en-US';
+    const formattedDate = new Date(y, m - 1, d).toLocaleDateString(locale, {
       weekday: 'short',
       month: 'short',
       day: 'numeric'
     });
     confirmedDate.textContent = formattedDate;
     confirmedTime.textContent = currentReservationDraft.time;
-    confirmedGuests.textContent = `${currentReservationDraft.guests} ${Number(currentReservationDraft.guests) === 1 ? 'Guest' : 'Guests'}`;
-    confirmedSeating.textContent = currentReservationDraft.seating;
+    
+    const guestUnit = Number(currentReservationDraft.guests) === 1 ? t('guest_word') : t('guests_word');
+    confirmedGuests.textContent = `${currentReservationDraft.guests} ${guestUnit}`;
+    confirmedSeating.textContent = t(`seating_${currentReservationDraft.seating.toLowerCase()}`) || currentReservationDraft.seating;
 
     // Switch stage
     bookingStageVerification.style.display = 'none';
     bookingStageConfirmed.style.display = 'block';
 
     updateBookingCountBadge();
-    showToast(`Table confirmed at ${currentReservationDraft.restaurant}!`);
+    showToast(t('toast_confirmed', { restaurant: currentReservationDraft.restaurant }));
   }
 
   // =========================================================================
-  // 4. LocalStorage & Bookings Drawer
+  // 5. LocalStorage & Bookings Drawer
   // =========================================================================
   function getSavedReservations() {
     try {
@@ -340,7 +409,7 @@
     }
     updateBookingCountBadge();
     renderBookingsDrawer();
-    showToast('Reservation removed.');
+    showToast(t('toast_removed'));
   }
 
   function updateBookingCountBadge() {
@@ -359,23 +428,24 @@
       savedBookingsList.innerHTML = `
         <div class="empty-bookings-notice">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold); margin-bottom: 1rem;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-          <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.35rem;">No active reservations</p>
-          <p style="font-size: 0.88rem;">When you book a table with Oasis, your confirmed reservations will appear here.</p>
+          <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.35rem;">${t('drawer_empty_title')}</p>
+          <p style="font-size: 0.88rem;">${t('drawer_empty_text')}</p>
         </div>
       `;
       return;
     }
 
+    const cancelText = t('btn_cancel');
     savedBookingsList.innerHTML = list.map(item => `
       <div class="saved-booking-item">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <h4>${escapeHtml(item.restaurant)}</h4>
-          <button type="button" onclick="window.cancelReservation('${item.refCode}')" style="color: var(--text-muted); font-size: 0.75rem; text-decoration: underline;" title="Cancel this booking">Cancel</button>
+          <button type="button" onclick="window.cancelReservation('${item.refCode}')" style="color: var(--text-muted); font-size: 0.75rem; text-decoration: underline;" title="${cancelText}">${cancelText}</button>
         </div>
         <div class="saved-booking-code">${escapeHtml(item.refCode)} · Confirmed</div>
         <div class="saved-booking-meta">
           <span>📅 ${escapeHtml(item.date)} at ${escapeHtml(item.time)}</span>
-          <span>👥 ${escapeHtml(item.guests)} Guests (${escapeHtml(item.seating)})</span>
+          <span>👥 ${escapeHtml(item.guests)} (${escapeHtml(t(`seating_${(item.seating || '').toLowerCase()}`) || item.seating)})</span>
           <span>👤 ${escapeHtml(item.name)} (${escapeHtml(item.phone)})</span>
         </div>
       </div>
@@ -394,13 +464,13 @@
   };
 
   window.cancelReservation = function (refCode) {
-    if (confirm('Cancel this table reservation?')) {
+    if (confirm(t('cancel_confirm'))) {
       removeReservationFromStorage(refCode);
     }
   };
 
   // =========================================================================
-  // 5. For Restaurants Partner Modal
+  // 6. For Restaurants Partner Modal
   // =========================================================================
   window.openPartnerModal = function () {
     partnerForm.style.display = 'block';
@@ -440,12 +510,17 @@
   };
 
   // =========================================================================
-  // 6. Generic Info Modal (Terms / Privacy)
+  // 7. Generic Info Modal (Terms / Privacy)
   // =========================================================================
-  window.showModalInfo = function (title, text) {
+  window.showModalInfo = function (type) {
     const modal = document.getElementById('infoModal');
-    document.getElementById('infoModalTitle').textContent = title;
-    document.getElementById('infoModalContent').textContent = text;
+    if (type === 'privacy') {
+      document.getElementById('infoModalTitle').textContent = t('privacy_title');
+      document.getElementById('infoModalContent').textContent = t('privacy_text');
+    } else if (type === 'terms') {
+      document.getElementById('infoModalTitle').textContent = t('terms_title');
+      document.getElementById('infoModalContent').textContent = t('terms_text');
+    }
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
@@ -456,7 +531,7 @@
   };
 
   // =========================================================================
-  // 7. Toast Helper
+  // 8. Toast Helper
   // =========================================================================
   let toastTimer = null;
   function showToast(msg) {
@@ -480,10 +555,16 @@
   }
 
   // =========================================================================
-  // 8. Event Listeners Initialization
+  // 9. Initialization
   // =========================================================================
   document.addEventListener('DOMContentLoaded', () => {
+    // Initialize date constraints
     initDatePickers();
+    
+    // Apply saved or default language
+    applyTranslations();
+    
+    // Badge
     updateBookingCountBadge();
 
     // My Bookings button click
@@ -516,7 +597,7 @@
     });
 
     // Close modals when clicking backdrop
-    [reservationModal, partnerModal].forEach(modal => {
+    [reservationModal, partnerModal, document.getElementById('infoModal')].forEach(modal => {
       if (modal) {
         modal.addEventListener('click', (e) => {
           if (e.target === modal) {
